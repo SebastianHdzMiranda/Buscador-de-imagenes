@@ -14,3 +14,13 @@ img {
     object-fit: cover;
   } 
 }
+
+.buscador {
+  width: 90%;
+}
+.campos-radio {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding-top: 15px;
+}

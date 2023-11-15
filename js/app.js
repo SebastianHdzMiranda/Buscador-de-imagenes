@@ -16,7 +16,7 @@ formulario.addEventListener('submit', validarFormulario);
 function validarFormulario(e) {
     e.preventDefault();
     const busqueda = document.querySelector('#termino').value;
-
+    
     if (busqueda === '' || busqueda.length > 100) {
         mostrarAlerta('Agrega una busqueda valida');
         return;
@@ -32,7 +32,16 @@ function validarFormulario(e) {
 function consultarImagenes() {
     const busqueda = document.querySelector('#termino').value;
     const key = '40677804-be16a06fbc0cb73be0bd93c8a';
-    const url = `https://pixabay.com/api/?key=${key}&q=${busqueda}&per_page=${registroPorPagina}&page=${paginaActual}`;
+    
+    const radio = document.querySelectorAll('input[name="opcion"]');
+    let valueRadio = 'all';
+    radio.forEach( input=> {
+        if (input.checked) { valueRadio = input.value }
+    });
+
+    console.log(valueRadio);
+
+    const url = `https://pixabay.com/api/?key=${key}&q=${busqueda}&per_page=${registroPorPagina}&page=${paginaActual}&orientation=${valueRadio}`;
     
     return fetch(url)
         .then( respuesta => respuesta.json())
